@@ -37,3 +37,71 @@ stages:
       md5: 4a8adce5528484b4d2177d333b3df486.dir
       size: 2331631
       nfiles: 2
+  model_building:
+    cmd: python src/model/model_building.py
+    deps:
+    - path: data/interim/train_processed.csv
+      hash: md5
+      md5: 8708b8a5265f6c66b0d5e852bdff0731
+      size: 1857557
+    - path: src/model/model_building.py
+      hash: md5
+      md5: 87c00516b453c4c1f58ae2c72be0053b
+      size: 5592
+    params:
+      params.yaml:
+        model_building.learning_rate: 0.09
+        model_building.max_depth: 20
+        model_building.max_features: 1000
+        model_building.n_estimators: 367
+        model_building.ngram_range:
+        - 1
+        - 1
+    outs:
+    - path: bow_vectorizer.pkl
+      hash: md5
+      md5: 412c39633361d34e4235a6d40825276e
+      size: 28049
+    - path: lgbm_model.pkl
+      hash: md5
+      md5: c203981c672d3ee4070bab75ccd639b9
+      size: 3999497
+  model_evaluation:
+    cmd: python src/model/model_evaluation.py
+    deps:
+    - path: bow_vectorizer.pkl
+      hash: md5
+      md5: fc2398eacc20772daa454b1971ea38ba
+      size: 28050
+    - path: data/interim/test_processed.csv
+      hash: md5
+      md5: c5dbb282fa8cf3cf589b64f21c1f35e1
+      size: 474074
+    - path: data/interim/train_processed.csv
+      hash: md5
+      md5: 8708b8a5265f6c66b0d5e852bdff0731
+      size: 1857557
+    - path: lgbm_model.pkl
+      hash: md5
+      md5: 05a58b678da179078c17a1d7adfe242d
+      size: 3999486
+    - path: src/model/model_evaluation.py
+      hash: md5
+      md5: daf64a723f3caa86de84bd9545041150
+      size: 11992
+    outs:
+    - path: experiment_info.json
+      hash: md5
+      md5: 9c9e48320470dacd0c5fb8efdef901d2
+      size: 103
+  model_registration:
+    cmd: python src/model/model_register.py
+    deps:
+    - path: experiment_info.json
+      hash: md5
+      md5: 9c9e48320470dacd0c5fb8efdef901d2
+      size: 103
+    - path: src/model/model_register.py
+      hash: md5
+      md5: 839a18c48f0a882e6f9a801a6105ff98
+      size: 4988
