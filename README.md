@@ -33,3 +33,127 @@ An end-to-end machine learning project that analyzes YouTube video comments in r
 - **JavaScript** - Frontend logic and API integration
 - **HTML/CSS** - Modern UI with gradient designs and animations
 
+### Cloud & Infrastructure
+- **AWS (EC2, S3, ECR)** - Cloud deployment, Cloud storage, To save docker images
+
+### Data Visualization
+- **Matplotlib** - Chart generation and data visualization
+- **WordCloud** - Text visualization for comment analysis
+- **Seaborn** - Statistical data visualization
+
+
+### Cloud & Infrastructure
+- **AWS (EC2, ELB)** - Cloud deployment
+- **Databricks SDK** - Integration with Databricks platform
+
+### Data Visualization
+- **Matplotlib** - Chart generation and data visualization
+- **WordCloud** - Text visualization for comment analysis
+- **Seaborn** - Statistical data visualization
+
+## 📂 Project Structure
+
+```
+├── backend/
+│   └── main.py                 # Flask backend server
+├── frontend/
+│   ├── popup.html             # Chrome extension popup interface
+│   ├── popup.js               # Frontend JavaScript logic
+│   └── manifest.json          # Chrome extension manifest
+├── src/
+│   ├── data/
+│   │   ├── data_ingestion.py      # Data collection and splitting
+│   │   └── data_preprocessing.py   # Text preprocessing pipeline
+│   └── model/
+│       ├── model_building.py      # Model training and optimization
+│       ├── model_evaluation.py    # Model evaluation and metrics
+│       └── model_register.py      # MLflow model registration
+├── data/
+│   ├── raw/                   # Raw training data
+│   └── interim/               # Processed training data
+├── dvc.yaml                   # DVC pipeline configuration
+├── params.yaml                # Model and pipeline parameters
+├── requirements.txt           # Python dependencies
+└── setup.py                   # Package setup configuration
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.8+
+- YouTube Data API key
+- AWS account (for cloud deployment)
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd End-to-end-Youtube_sentiment_analysis
+```
+
+2. **Install Python dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+3. **Install the package**
+```bash
+pip install -e .
+```
+
+4. **Set up environment variables**
+```bash
+export YOUTUBE_API_KEY="your_youtube_api_key"
+export MLFLOW_TRACKING_URI="your_mlflow_server_url"
+```
+
+### Running the ML Pipeline
+
+1. **Execute the complete DVC pipeline**
+```bash
+dvc repro
+```
+
+2. **Or run individual stages**
+```bash
+# Data ingestion
+dvc repro data_ingestion
+
+# Data preprocessing
+dvc repro data_preprocessing
+
+# Model building
+dvc repro model_building
+
+# Model evaluation
+dvc repro model_evaluation
+
+# Model registration
+dvc repro model_registration
+```
+
+### Running the Backend Server
+
+1. **Start the Flaskserver**
+```bash
+cd backend
+python main.py
+```
+
+### Installing the Chrome Extension
+
+1. **Open Chrome and navigate to `chrome://extensions/`**
+2. **Enable Developer mode**
+3. **Click "Load unpacked" and select the `frontend/` directory**
+4. **The extension should now appear in your Chrome toolbar**
+
+## 📊 Model Performance
+
+The LightGBM model is configured with the following parameters:
+- **Learning Rate**: 0.09
+- **Max Depth**: 20
+- **N Estimators**: 367
+- **Max Features**: 1000
+- **N-gram Range**: [1, 1]
+
