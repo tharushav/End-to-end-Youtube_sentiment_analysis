@@ -185,5 +185,6 @@ model_building:
 
 The project supports deployment on AWS infrastructure:
 - **EC2 instances** for model serving
-
+- **MLflow server** for model management
+- **Docker containers** for consistent deployment
 
