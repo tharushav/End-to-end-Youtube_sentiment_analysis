@@ -157,3 +157,33 @@ The LightGBM model is configured with the following parameters:
 - **Max Features**: 1000
 - **N-gram Range**: [1, 1]
 
+## 🔧 Configuration
+
+### Model Parameters (`params.yaml`)
+```yaml
+data_ingestion:
+  test_size: 0.20
+
+model_building:
+  ngram_range: [1, 1]  
+  max_features: 1000
+  learning_rate: 0.09
+  max_depth: 20
+  n_estimators: 367
+```
+
+### API Endpoints
+- `GET /` - Health check and model status
+- `POST /predict` - Batch sentiment prediction
+- `POST /predict_with_timestamps` - Sentiment prediction with timestamps
+- `POST /generate_chart` - Generate sentiment distribution chart
+- `POST /generate_wordcloud` - Generate word cloud visualization
+- `POST /generate_trend_graph` - Generate sentiment trend graph
+- `GET /health` - Detailed health check with system status
+
+## 🌐 Deployment
+
+The project supports deployment on AWS infrastructure:
+- **EC2 instances** for model serving
+
+
